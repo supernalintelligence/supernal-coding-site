@@ -1,10 +1,6 @@
 {
   "version": 2,
-  "name": "supernal-coding-site",
   "framework": "nextjs",
-  "buildCommand": "pnpm build",
-  "installCommand": "pnpm install",
-  "outputDirectory": ".next",
   "cleanUrls": true,
   "trailingSlash": false,
   "env": {
