@@ -47,4 +47,4 @@ tmp/
 
 
 # Build-time content copy (for Vercel)
-content/
+/content/

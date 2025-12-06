@@ -1,4 +1,3 @@
-import path from 'node:path';
 import { DEFAULT_IMAGES } from '@/lib/constants';
 
 interface MediaContext {
@@ -6,6 +5,19 @@ interface MediaContext {
   slug: string;
   contentDir?: string;
   isIndex?: boolean;
+}
+
+// Pure JS path utilities (browser-safe, no node:path)
+function joinPath(...parts: string[]): string {
+  return parts
+    .filter(Boolean)
+    .join('/')
+    .replace(/\/+/g, '/');
+}
+
+function dirname(path: string): string {
+  const lastSlash = path.lastIndexOf('/');
+  return lastSlash === -1 ? '' : path.slice(0, lastSlash);
 }
 
 export class MediaResolver {
@@ -55,7 +67,7 @@ export class MediaResolver {
 
     // Handle absolute paths
     if (mediaPath.startsWith('/')) {
-      return path.join('/', mediaPath).replace(/\\/g, '/');
+      return joinPath('/', mediaPath);
     }
 
     // Handle relative paths
@@ -74,11 +86,11 @@ export class MediaResolver {
     const itemDir = context.isIndex
       ? slugWithoutSection // Index files: use full slug as directory
       : slugWithoutSection.includes('/')
-        ? path.dirname(slugWithoutSection) // Regular posts: use parent directory
+        ? dirname(slugWithoutSection) // Regular posts: use parent directory
         : ''; // Top-level posts: use section only
 
     // Construct the full path
-    const fullPath = path.join(
+    const fullPath = joinPath(
       '/',
       contentDir,
       context.section,
@@ -86,7 +98,7 @@ export class MediaResolver {
       cleanMediaPath
     );
 
-    return fullPath.replace(/\\/g, '/');
+    return fullPath;
   }
 
   static getYouTubeId(url: string): string | null {
