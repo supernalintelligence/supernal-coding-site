@@ -1,0 +1,206 @@
+# Supernal Coding Documentation Site Configuration
+
+site:
+  title: 'Supernal Coding'
+  description: 'AI-Accelerated Development Workflow System - Build better software faster with intelligent requirement management and automated compliance.'
+  url: 'https://supernal.ai'
+  language: 'en'
+  favicon: '/favicon.ico'
+  copyright: '© 2025 Supernal Coding. All rights reserved.'
+
+author:
+  name: 'Supernal Coding Team'
+  email: 'hello@supernal.ai'
+  link: '/about'
+  social:
+    twitter: 'https://twitter.com/supernalai'
+    github: 'https://github.com/supernalintelligence/supernal-coding'
+    linkedin: 'https://linkedin.com/company/supernal'
+
+# Main navigation sections (top-level pages)
+navigation:
+  - id: 'docs'
+    name: 'Documentation'
+    path: '/docs'
+    description: 'Complete documentation for using Supernal Coding'
+    icon: '📚'
+    order: 1
+    external: false
+
+  - id: 'cli'
+    name: 'CLI Reference'
+    path: '/cli'
+    description: 'Command-line interface documentation'
+    icon: '⌨️'
+    order: 2
+    external: false
+
+  - id: 'dashboard'
+    name: 'Dashboard'
+    path: 'https://dashboard.supernal.ai'
+    description: 'Real-time monitoring and analytics'
+    icon: '📊'
+    order: 3
+    external: true
+
+  - id: 'blog'
+    name: 'Blog'
+    path: '/blog'
+    description: 'Latest updates, insights, and tutorials'
+    icon: '📝'
+    order: 4
+    external: false
+
+# Documentation sections (sidebar organization)
+docs:
+  sections:
+    - id: 'getting-started'
+      name: 'Getting Started'
+      icon: '🎯'
+      order: 1
+      description: 'Quick setup and integration guides'
+
+    - id: 'core-concepts'
+      name: 'Core Concepts'
+      icon: '🧠'
+      order: 2
+      description: 'Understanding Supernal Coding fundamentals'
+
+    - id: 'requirements'
+      name: 'Requirements System'
+      icon: '📋'
+      order: 3
+      description: 'Gherkin-based requirement management'
+
+    - id: 'git-workflow'
+      name: 'Git Workflow'
+      icon: '🔀'
+      order: 4
+      description: 'Git-smart workflow and branching strategy'
+
+    - id: 'testing'
+      name: 'Testing & Validation'
+      icon: '🧪'
+      order: 5
+      description: 'Test generation and validation patterns'
+
+    - id: 'compliance'
+      name: 'Compliance'
+      icon: '✅'
+      order: 6
+      description: 'FDA, GxP, and regulatory compliance'
+
+    - id: 'guides'
+      name: 'Guides'
+      icon: '📖'
+      order: 7
+      description: 'Step-by-step tutorials and how-tos'
+
+    - id: 'reference'
+      name: 'Reference'
+      icon: '📚'
+      order: 8
+      description: 'API and command reference'
+
+# CLI sections (for /cli route)
+cli:
+  sections:
+    - id: 'commands'
+      name: 'Commands'
+      icon: '⚡'
+      order: 1
+      description: 'All available CLI commands'
+
+    - id: 'workflows'
+      name: 'Workflows'
+      icon: '🔄'
+      order: 2
+      description: 'Common workflow patterns'
+
+    - id: 'configuration'
+      name: 'Configuration'
+      icon: '⚙️'
+      order: 3
+      description: 'Configuration options and files'
+
+# Blog settings
+blog:
+  postsPerPage: 9
+  showAuthor: true
+  showReadingTime: true
+  showTags: true
+  showCategories: true
+  defaultImage: '/images/default-blog.jpg'
+  defaultDescription: 'Latest updates on AI-accelerated development workflows, compliance automation, and modern testing practices'
+
+  # Blog post grouping for sidebar
+  groupBy: 'date' # date, category, tag, author
+
+  categories:
+    - id: 'announcements'
+      name: 'Announcements'
+      icon: '📢'
+      order: 1
+
+    - id: 'tutorials'
+      name: 'Tutorials'
+      icon: '🎓'
+      order: 2
+
+    - id: 'case-studies'
+      name: 'Case Studies'
+      icon: '💼'
+      order: 3
+
+    - id: 'technical'
+      name: 'Technical Deep Dives'
+      icon: '🔬'
+      order: 4
+
+# Table of Contents settings
+toc:
+  enabled: true
+  maxDepth: 3 # h1, h2, h3
+  minHeadings: 2 # Only show TOC if at least 2 headings
+  position: 'right' # right, left, inline
+
+# Features
+features:
+  search: true
+  breadcrumbs: true
+  darkMode: true
+  analytics: false # Enable when ready
+  rss: true
+  sitemap: true
+
+# RSS Feed settings
+rss:
+  title: 'Supernal Coding Blog'
+  description: 'Latest updates on AI-accelerated development workflows'
+  categories:
+    - Development
+    - AI
+    - Compliance
+    - Testing
+  ttl: 60
+
+# SEO and social
+social:
+  twitter: 'https://twitter.com/supernalai'
+  github: 'https://github.com/supernalintelligence/supernal-coding'
+  linkedin: 'https://linkedin.com/company/supernal'
+
+og:
+  type: 'website'
+  locale: 'en_US'
+  siteName: 'Supernal Coding'
+
+# Color scheme
+branding:
+  colors:
+    primary: '#0ea5e9' # Sky blue
+    primaryDark: '#0284c7'
+    primaryLight: '#38bdf8'
+    accent: '#ff9800' # Gold
+    accentDark: '#f57c00'
+    accentLight: '#ffb74d'

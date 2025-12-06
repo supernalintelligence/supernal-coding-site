@@ -1,0 +1,89 @@
+ai-development:
+  label: AI Development
+  permalink: /ai-development
+  description: Posts about AI-enhanced development workflows and intelligent systems
+
+workflow-automation:
+  label: Workflow Automation
+  permalink: /workflow-automation
+  description: Automated development processes and intelligent workflow management
+
+distributed-intelligence:
+  label: Distributed Intelligence
+  permalink: /distributed-intelligence
+  description: Systems that exhibit collective intelligence and emergent behaviors
+
+supernal-coding:
+  label: Supernal Coding
+  permalink: /supernal-coding
+  description: Core concepts and features of the Supernal Coding system
+
+compliance:
+  label: Compliance
+  permalink: /compliance
+  description: Automated compliance and validation for regulated industries
+
+validation:
+  label: Validation
+  permalink: /validation
+  description: Computer System Validation (CSV) and automated testing approaches
+
+regulated-industries:
+  label: Regulated Industries
+  permalink: /regulated-industries
+  description: Software development for pharmaceuticals, medical devices, and other regulated sectors
+
+git:
+  label: Git
+  permalink: /git
+  description: Advanced Git workflows and version control concepts
+
+intelligent-repositories:
+  label: Intelligent Repositories
+  permalink: /intelligent-repositories
+  description: Repositories that can understand, modify, and evolve themselves
+
+version-control:
+  label: Version Control
+  permalink: /version-control
+  description: Next-generation version control systems and methodologies
+
+ai-agents:
+  label: AI Agents
+  permalink: /ai-agents
+  description: Artificial intelligence systems that can operate autonomously
+
+self-modifying-code:
+  label: Self-Modifying Code
+  permalink: /self-modifying-code
+  description: Code systems that can analyze and modify themselves
+
+csv:
+  label: CSV
+  permalink: /csv
+  description: Computer System Validation approaches and methodologies
+
+automation:
+  label: Automation
+  permalink: /automation
+  description: Automated development and validation processes
+
+gxp:
+  label: GxP
+  permalink: /gxp
+  description: Good Practice regulations and compliance standards
+
+principles:
+  label: Principles
+  permalink: /principles
+  description: Core principles and foundational concepts for software development
+
+best-practices:
+  label: Best Practices
+  permalink: /best-practices
+  description: Proven approaches and methodologies for effective development
+
+quality:
+  label: Quality
+  permalink: /quality
+  description: Software quality assurance and quality-driven development

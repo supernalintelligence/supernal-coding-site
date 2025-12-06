@@ -1,0 +1,16 @@
+supernal:
+  name: Supernal Intelligence
+  title: AI-Powered Development Tools
+  url: https://supernal.ai
+  image_url: /img/supernal-logo.svg
+  socials:
+    twitter: SupernalAI
+    github: supernalintelligence
+
+ianderrington:
+  name: Ian Derrington
+  title: Founder & CEO, Supernal Intelligence
+  url: https://ian.ceo
+  image_url: /img/supernal-logo.svg
+  socials:
+    github: ianderrington

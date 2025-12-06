@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "name": "supernal-docs-next-standalone",
+  "buildCommand": "pnpm install && pnpm build",
+  "devCommand": "pnpm dev",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
