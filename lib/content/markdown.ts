@@ -8,7 +8,6 @@ import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import { logger } from '../logger';
-import path from 'path';
 import remarkGithubBetaBlockquoteAdmonitions from 'remark-github-beta-blockquote-admonitions';
 import { StoryConfig } from '@/types/story-config';
 import { visit } from 'unist-util-visit';
@@ -16,28 +15,30 @@ import { z } from 'zod';
 import { MediaConfig } from '@/types/media';
 import { Node } from 'unist';
 import remarkMdLinks from '../remarkMdLinks';
-import NodeCache from 'node-cache';
 
-// Create a cache for processed markdown content
-// Set TTL to 1 hour (3600 seconds) in production, 5 minutes in development
-const mdCache = new NodeCache({
-  stdTTL: process.env.NODE_ENV === 'production' ? 3600 : 300, // 5 minutes in dev instead of 10 seconds
-  checkperiod: 120,
-  useClones: false,
-});
+// Browser-safe path join
+function joinPath(...parts: string[]): string {
+  return parts.filter(Boolean).join('/').replace(/\/+/g, '/');
+}
 
-// Cache key format for markdown content
+// Browser-safe cache using Map
+const mdCache = new Map<string, string>();
+
+// Simple string hash (browser-safe, no crypto)
+function simpleHash(str: string): string {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return Math.abs(hash).toString(16).substring(0, 16);
+}
+
+// Cache key format for markdown content (browser-safe)
 const getMdCacheKey = (content: string, filePath?: string): string => {
-  // Create a stable hash from content instead of base64 to avoid memory issues
-  const crypto = require('crypto');
-  const contentHash = crypto
-    .createHash('md5')
-    .update(content)
-    .digest('hex')
-    .substring(0, 16);
-  const pathHash = filePath
-    ? crypto.createHash('md5').update(filePath).digest('hex').substring(0, 8)
-    : 'unknown';
+  const contentHash = simpleHash(content);
+  const pathHash = filePath ? simpleHash(filePath).substring(0, 8) : 'unknown';
   return `md:${contentHash}:${pathHash}`;
 };
 
@@ -302,13 +303,16 @@ export async function markdownToHtml(
   try {
     // Check if we have this content cached already
     const cacheKey = getMdCacheKey(content, filePath);
-    const cachedHtml = mdCache.get<string>(cacheKey);
+    const cachedHtml = mdCache.get(cacheKey);
 
     if (cachedHtml) {
       return cachedHtml;
     }
 
     // Removed excessive logging - only log errors and warnings
+
+    // Get root dir (browser-safe)
+    const rootDir = typeof window === 'undefined' ? process.cwd() : '';
 
     // Process custom ID syntax in markdown headers: ## Header {#custom-id}
     const processor = unified()
@@ -318,8 +322,8 @@ export async function markdownToHtml(
       .use(remarkProcessHeadingIds) // Process custom heading IDs
       // Add remarkMdLinks to convert markdown links from .md to .html
       .use(remarkMdLinks, {
-        rootDir: process.cwd(),
-        currentFilePath: filePath || path.join(process.cwd(), 'content'),
+        rootDir,
+        currentFilePath: filePath || joinPath(rootDir, 'content'),
         checkFiles: false, // Don't check files to avoid fs usage in client components
       })
       .use(remarkGithubBetaBlockquoteAdmonitions)

@@ -1,15 +1,21 @@
-import path from 'node:path';
 import type { Root } from 'mdast';
-import NodeCache from 'node-cache';
 import type { Plugin } from 'unified';
 import { visit } from 'unist-util-visit';
 import { isServer } from './server-utils';
 
-// Create a cache for processed links
-const linkCache = new NodeCache({
-  stdTTL: process.env.NODE_ENV === 'production' ? 3600 : 300, // 5 minutes in dev instead of 10 seconds
-  checkperiod: 120
-});
+// Browser-safe path utilities
+function normalizePath(p: string): string {
+  return p.replace(/\\/g, '/').replace(/\/+/g, '/');
+}
+
+function dirname(p: string): string {
+  const normalized = normalizePath(p);
+  const lastSlash = normalized.lastIndexOf('/');
+  return lastSlash === -1 ? '.' : normalized.slice(0, lastSlash);
+}
+
+// Simple in-memory cache (browser-safe)
+const linkCache = new Map<string, string>();
 
 // Track processing stack to prevent infinite loops
 const processingStack = new Set<string>();
@@ -29,21 +35,21 @@ const remarkMdLinks: Plugin<[RemarkMdLinksOptions], Root> = (options) => {
 
   return (tree) => {
     // Normalize the file path to prevent different representations of the same file
-    const normalizedPath = path.normalize(currentFilePath);
+    const normalizedFilePath = normalizePath(currentFilePath);
 
     // Prevent infinite recursion with processing stack
-    if (processingStack.has(normalizedPath)) {
+    if (processingStack.has(normalizedFilePath)) {
       console.warn(
-        `Circular reference detected in remarkMdLinks for: ${normalizedPath}`
+        `Circular reference detected in remarkMdLinks for: ${normalizedFilePath}`
       );
       return;
     }
 
-    processingStack.add(normalizedPath);
+    processingStack.add(normalizedFilePath);
 
     try {
       // Get the directory of the current file
-      const _currentDir = path.dirname(currentFilePath);
+      const _currentDir = dirname(currentFilePath);
 
       // Visit all link nodes in the markdown AST
       visit(tree, 'link', (node: any) => {
@@ -58,7 +64,7 @@ const remarkMdLinks: Plugin<[RemarkMdLinksOptions], Root> = (options) => {
           const cachedUrl = linkCache.get(cacheKey);
 
           if (cachedUrl) {
-            node.url = cachedUrl as string;
+            node.url = cachedUrl;
             return; // Use cached result without logging
           }
 
@@ -96,7 +102,7 @@ const remarkMdLinks: Plugin<[RemarkMdLinksOptions], Root> = (options) => {
         }
       });
     } finally {
-      processingStack.delete(normalizedPath);
+      processingStack.delete(normalizedFilePath);
     }
   };
 };
