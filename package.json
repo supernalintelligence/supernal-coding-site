@@ -13,7 +13,7 @@
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
-    "@next/mdx": "^15.3.2",
+    "@next/mdx": "^15.3.6",
     "@types/minimatch": "^5.1.2",
     "classnames": "2.5.1",
     "clsx": "^2.1.0",
@@ -23,7 +23,7 @@
     "js-yaml": "4.1.0",
     "lucide-react": "^0.475.0",
     "mermaid": "^11.4.1",
-    "next": "15.3.2",
+    "next": "15.3.6",
     "next-themes": "^0.2.1",
     "node-cache": "5.1.2",
     "qrcode.react": "4.2.0",

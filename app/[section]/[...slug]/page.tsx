@@ -14,10 +14,10 @@ import { resolveImagePath } from '@/lib/imageUtils';
 export const revalidate = 3600;
 
 interface PageProps {
-  params: {
+  params: Promise<{
     section: string;
     slug: string[];
-  };
+  }>;
 }
 
 // This function is now handled by the unified collection renderer

@@ -14,10 +14,10 @@ export const revalidate = 3600; // Revalidate content every hour
 
 // Add type definitions at the top of the file
 interface SectionPageProps {
-  params: {
+  params: Promise<{
     section: string;
-  };
-  searchParams?: { [key: string]: string | string[] | undefined };
+  }>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 // Generate static params for all sections
