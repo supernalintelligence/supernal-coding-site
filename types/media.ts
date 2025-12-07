@@ -1,3 +1,25 @@
+// Media types for components
+export type MediaType = 'video' | 'sound' | 'image' | 'unknown';
+
+export interface MediaProps {
+  url: string;
+  type: MediaType;
+  alt?: string;
+  caption?: string;
+  posterImage?: string;
+  className?: string;
+  options?: Record<string, unknown>;
+  onLoad?: () => void;
+  onError?: (error: Error) => void;
+}
+
+export interface MediaConfig {
+  defaultImageQuality?: number;
+  maxImageWidth?: number;
+  lazyLoad?: boolean;
+  placeholder?: string;
+}
+
 export interface MediaAsset {
   id: string;
   hash: string;

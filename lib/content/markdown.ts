@@ -402,7 +402,7 @@ export async function markdownToHtml(
 
 // Function to clear markdown cache
 export function clearMarkdownCache() {
-  mdCache.flushAll();
+  mdCache.clear();
 }
 
 export function getMediaConfigFromFrontmatter(

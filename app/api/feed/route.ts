@@ -1,6 +1,4 @@
-// TODO: Add feed package dependency or remove this API route
-// import { Feed } from 'feed';
-
+import { Feed } from 'feed';
 import { type NextRequest, NextResponse } from 'next/server';
 import { siteConfig } from '@/config/site';
 import { markdownToHtml } from '@/lib/content/markdown';
