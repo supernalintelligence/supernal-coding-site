@@ -9,11 +9,16 @@ import Breadcrumb from '@/components/Breadcrumb';
 import TableOfContents from '@/components/TableOfContents';
 import type { Post } from '@/lib/content';
 
+interface BreadcrumbItem {
+  name: string;
+  href?: string;
+}
+
 interface DocsLayoutProps {
   post: Post;
   children: React.ReactNode;
   showTOC?: boolean;
-  breadcrumbPath?: string[];
+  breadcrumbPath?: BreadcrumbItem[];
 }
 
 export default function DocsLayout({
