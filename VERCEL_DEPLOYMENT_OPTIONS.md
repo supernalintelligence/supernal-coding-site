@@ -75,7 +75,7 @@ Repository: supernal-coding
 ├── vercel.json                    → Docusaurus (current)
 ├── vercel-docs-next.json          → Next.js docs (Option A)
 ├── apps/docs-next/vercel.json     → Next.js docs (Option B)
-├── apps/dashboard-v2/vercel.json  → Dashboard
+├── apps/supernal-dashboard/vercel.json  → Dashboard
 └── apps/api/vercel.json           → API
 ```
 

@@ -182,28 +182,30 @@ export default function DocsSidebar({
 
   // Update expanded items when path changes
   useEffect(() => {
-    const expanded = new Set(expandedItems);
-    const expandParents = (items: SidebarItem[], path: string) => {
-      for (const item of items) {
-        if (item.path && path.startsWith(item.path)) {
-          expanded.add(item.id);
-        }
-        if (item.children) {
-          expandParents(item.children, path);
-          for (const child of item.children) {
-            if (
-              expanded.has(child.id) ||
-              (child.path && path.startsWith(child.path))
-            ) {
-              expanded.add(item.id);
+    setExpandedItems((prev) => {
+      const expanded = new Set(prev);
+      const expandParents = (items: SidebarItem[], path: string) => {
+        for (const item of items) {
+          if (item.path && path.startsWith(item.path)) {
+            expanded.add(item.id);
+          }
+          if (item.children) {
+            expandParents(item.children, path);
+            for (const child of item.children) {
+              if (
+                expanded.has(child.id) ||
+                (child.path && path.startsWith(child.path))
+              ) {
+                expanded.add(item.id);
+              }
             }
           }
         }
-      }
-    };
-    expandParents(items, activePath);
-    setExpandedItems(expanded);
-  }, [activePath, items, expandedItems]);
+      };
+      expandParents(items, activePath);
+      return expanded;
+    });
+  }, [activePath, items]);
 
   const handleToggle = (id: string) => {
     setExpandedItems((prev) => {
