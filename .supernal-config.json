@@ -1,0 +1,69 @@
+{
+  "version": "1.0.0",
+  "equipmentPackId": "ep-1765312716640-yaw6y1g2y",
+  "installedAt": "2025-12-09T20:38:36.640Z",
+  "installationDate": "2025-12-09T20:38:36.640Z",
+  "preset": "standard",
+  "projectType": {
+    "detected": "Full Stack",
+    "confidence": 79
+  },
+  "installedFeatures": [
+    "coreSystem",
+    "gitManagement",
+    "kanbanSystem",
+    "mcpIntegration"
+  ],
+  "equipmentPack": {
+    "version": "1.0.0",
+    "components": {
+      "coreSystem": {
+        "cursorRules": [
+          "agent-on-board",
+          "dev_workflow",
+          "agent-hand-off",
+          "avoid-anti-patterns",
+          "testing-strategy",
+          "self-improve"
+        ],
+        "directories": [
+          "kanban",
+          "requirements",
+          "tests/e2e",
+          "tests/requirements",
+          "supernal-code-package/lib/cli/commands",
+          "templates"
+        ],
+        "packages": [
+          "chalk",
+          "commander",
+          "fs-extra",
+          "inquirer",
+          "yaml",
+          "handlebars",
+          "js-yaml"
+        ]
+      },
+      "gitManagement": {
+        "cursorRules": [
+          "git-smart"
+        ]
+      },
+      "projectSpecific": {
+        "cursorRules": [
+          "react-patterns",
+          "api-design",
+          "database-patterns",
+          "frontend-performance"
+        ],
+        "packages": [
+          "next",
+          "nuxt",
+          "prisma",
+          "jest",
+          "cypress"
+        ]
+      }
+    }
+  }
+}

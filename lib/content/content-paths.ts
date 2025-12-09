@@ -1,95 +1,36 @@
 import path from 'path';
-import fs from 'fs';
 
 /**
  * Content section paths - maps URL paths to filesystem paths
- * Each section checks for build-time content/ first, then falls back to workspace
+ * All content is now served from docs/ directory (installed via sc init)
  */
 export const CONTENT_PATHS = {
-  // Blog: Read from local docs/blog (copied from Docusaurus)
+  // Blog: Read from docs/blog
   blog: path.join(process.cwd(), 'docs', 'blog'),
 
-  // Docs: Read from workspace docs directory (../../docs)
-  // In dev: Always use workspace
-  // In build: Use content/ if it exists (from BUILD_WITH_CONTENT.sh)
-  docs: (() => {
-    const contentDir = path.join(process.cwd(), 'content', 'docs');
-    if (fs.existsSync(contentDir)) {
-      console.log('[content-paths] docs: Using build content:', contentDir);
-      return contentDir;
-    }
-    const workspaceDocs = path.join(process.cwd(), '..', '..', 'docs');
-    console.log('[content-paths] docs: Using workspace:', workspaceDocs);
-    return workspaceDocs;
-  })(),
+  // Main documentation
+  docs: path.join(process.cwd(), 'docs'),
 
-  // Guides: Subset of docs (for navigation)
-  guides: (() => {
-    const contentDir = path.join(process.cwd(), 'content', 'docs', 'guides');
-    if (fs.existsSync(contentDir)) {
-      return contentDir;
-    }
-    return path.join(process.cwd(), '..', '..', 'docs', 'guides');
-  })(),
+  // Guides: Subset of docs
+  guides: path.join(process.cwd(), 'docs', 'guides'),
 
-  // Workflow/SOPs: Public-facing SOPs
-  workflow: (() => {
-    const contentDir = path.join(process.cwd(), 'content', 'docs', 'workflow');
-    if (fs.existsSync(contentDir)) {
-      return contentDir;
-    }
-    return path.join(process.cwd(), '..', '..', 'docs', 'workflow');
-  })(),
+  // Workflow/SOPs
+  workflow: path.join(process.cwd(), 'docs', 'workflow'),
 
-  // CLI commands documentation
-  cli: (() => {
-    const contentDir = path.join(
-      process.cwd(),
-      'content',
-      'docs',
-      'guides',
-      'cli-commands'
-    );
-    if (fs.existsSync(contentDir)) {
-      return contentDir;
-    }
-    return path.join(
-      process.cwd(),
-      '..',
-      '..',
-      'docs',
-      'guides',
-      'cli-commands'
-    );
-  })(),
+  // CLI commands documentation (within guides)
+  cli: path.join(process.cwd(), 'docs', 'guides', 'cli-commands'),
 
   // Compliance frameworks
-  compliance: (() => {
-    const contentDir = path.join(
-      process.cwd(),
-      'content',
-      'docs',
-      'compliance'
-    );
-    if (fs.existsSync(contentDir)) {
-      return contentDir;
-    }
-    return path.join(process.cwd(), '..', '..', 'docs', 'compliance');
-  })(),
+  compliance: path.join(process.cwd(), 'docs', 'compliance'),
 
-  // Architecture (public subset)
-  architecture: (() => {
-    const contentDir = path.join(
-      process.cwd(),
-      'content',
-      'docs',
-      'architecture'
-    );
-    if (fs.existsSync(contentDir)) {
-      return contentDir;
-    }
-    return path.join(process.cwd(), '..', '..', 'docs', 'architecture');
-  })(),
+  // Architecture
+  architecture: path.join(process.cwd(), 'docs', 'architecture'),
+
+  // Planning (epics, roadmap, kanban)
+  planning: path.join(process.cwd(), 'docs', 'planning'),
+
+  // Features
+  features: path.join(process.cwd(), 'docs', 'features'),
 } as const;
 
 /**
@@ -129,14 +70,12 @@ export function resolveSection(
 
 /**
  * Check if a section should be excluded from docs
- * (matches Docusaurus exclude patterns)
+ * (internal content not for public documentation)
  */
 export function shouldExclude(relativePath: string): boolean {
   const excludePatterns = [
     '/archive/',
     '/deprecated/',
-    '/features/', // Internal feature development
-    '/planning/', // Internal project management
     '/handoffs/', // Internal agent communication
     '/research_and_analysis/', // Internal research
   ];
@@ -163,13 +102,19 @@ export function getNavigationSections(): Array<{
     {
       id: 'guides',
       name: 'Guides',
-      path: '/guides',
+      path: '/docs/guides',
       description: 'Step-by-step guides and tutorials',
+    },
+    {
+      id: 'workflow',
+      name: 'Workflow',
+      path: '/docs/workflow',
+      description: 'SOPs and workflow documentation',
     },
     {
       id: 'cli',
       name: 'CLI Reference',
-      path: '/cli',
+      path: '/docs/guides/cli-commands',
       description: 'Command-line interface documentation',
     },
     {
