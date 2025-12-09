@@ -92,10 +92,10 @@ export async function buildSidebarFromFilesystem(
           if (frontmatterMatch) {
             const frontmatter = frontmatterMatch[1];
             const titleMatch = frontmatter.match(
-              /^title:\s*['"]?([^'"]+)['"]?$/m
+              /^title:\s*['"]?([^\n'"]+)['"]?$/m
             );
             const iconMatch = frontmatter.match(
-              /^icon:\s*['"]?([^'"]+)['"]?$/m
+              /^icon:\s*['"]?([^\n'"]+)['"]?$/m
             );
             if (titleMatch) title = titleMatch[1];
             if (iconMatch) icon = iconMatch[1];
@@ -137,7 +137,7 @@ export async function buildSidebarFromFilesystem(
           if (frontmatterMatch) {
             const frontmatter = frontmatterMatch[1];
             const titleMatch = frontmatter.match(
-              /^title:\s*['"]?([^'"]+)['"]?$/m
+              /^title:\s*['"]?([^\n'"]+)['"]?$/m
             );
             const orderMatch = frontmatter.match(/^order:\s*(\d+)$/m);
             if (titleMatch) title = titleMatch[1];

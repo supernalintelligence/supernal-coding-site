@@ -36,10 +36,14 @@ export default async function DocsSlugPage({ params }: PageProps) {
   const defaultViewType =
     renderData.indexPost?.metadata?.defaultViewType || 'cards';
   const allowedViewTypes = renderData.indexPost?.metadata?.allowedViewTypes;
+  
+  // Allow frontmatter to override collection display (displayStyle: standard forces doc view)
+  const displayStyle = renderData.indexPost?.metadata?.displayStyle;
+  const showAsCollection = renderData.isCollection && displayStyle !== 'standard';
 
   return (
     <>
-      {renderData.isCollection ? (
+      {showAsCollection ? (
         <CollectionDisplay
           indexPost={renderData.indexPost}
           items={renderData.items}
