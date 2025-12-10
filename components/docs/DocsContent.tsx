@@ -33,30 +33,25 @@ export default function DocsContent({ post }: DocsContentProps) {
   return (
     <article className="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden">
       <div className="p-6 md:p-8">
-        {/* Header - only show if we have metadata */}
-        <header className="mb-8 pb-6 border-b border-gray-100 dark:border-gray-700">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-            {post.metadata.title}
-          </h1>
-          {post.metadata.description && (
-            <p className="mt-3 text-lg text-gray-500 dark:text-gray-400 italic">
-              {post.metadata.description}
-            </p>
-          )}
-          {post.metadata.author && (
-            <div className="mt-4 text-sm text-gray-400 dark:text-gray-500">
-              {typeof post.metadata.author === 'string'
-                ? post.metadata.author
-                : post.metadata.author.name}
-              {post.metadata.date && ` • ${formatDate(post.metadata.date)}`}
-            </div>
-          )}
-        </header>
+        {/* Title only */}
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+          {post.metadata.title}
+        </h1>
 
         {/* Content */}
-        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:mt-8 prose-headings:mb-4 prose-p:my-4 prose-ul:my-4 prose-li:my-1 prose-p:first:mt-0">
+        <div className="prose prose-lg dark:prose-invert max-w-none">
           <SafeHTML html={processedHtml} />
         </div>
+
+        {/* Author/date at bottom if present */}
+        {post.metadata.author && (
+          <div className="mt-8 pt-4 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-500 dark:text-gray-400">
+            {typeof post.metadata.author === 'string'
+              ? post.metadata.author
+              : post.metadata.author.name}
+            {post.metadata.date && ` • ${formatDate(post.metadata.date)}`}
+          </div>
+        )}
       </div>
     </article>
   );
