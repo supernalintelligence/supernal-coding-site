@@ -1,9 +1,10 @@
 title: Guides
 nav:
   - index.md
+  - what-you-get.md
   - configuring.md
   - planning.md
   - building.md
   - testing.md
-
-
+  - build-test-standards.md
+  - troubleshooting.md

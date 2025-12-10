@@ -1,74 +1,122 @@
 ---
 title: Building
-description: Development workflow and best practices
+description: How to build with Supernal Coding - AI rules, testing, implementation
 ---
 
-# Building with Supernal Coding
+Building with Supernal Coding means test-first, requirement-driven development with AI assistance.
 
-Development workflow that maintains traceability and quality.
+## Test-First Development
 
-## Development Workflow
-
-### 1. Start from a Requirement
+Generate tests before implementation:
 
 ```bash
-# Create or pick a requirement
-sc requirement list --status=pending
+# Generate tests from requirement
+sc requirement generate-tests REQ-001
+
+# Run tests
+npm test
+```
+
+## Cursor Rules
+
+Supernal Coding includes AI rules in `.cursor/rules/` that help AI agents:
+
+- Understand project structure
+- Follow coding standards
+- Maintain compliance requirements
+- Generate appropriate tests
+
+## Implementation Workflow
+
+### 1. Start Work on a Requirement
+
+```bash
+# Create feature branch
+sc git-smart branch --requirement=REQ-001
+
+# Mark requirement as in-progress
 sc requirement update REQ-001 --status=in-progress
 ```
 
-### 2. Create Feature Branch
+### 2. Implement with AI Assistance
+
+The Cursor rules provide context for AI agents:
+
+- Project conventions
+- Testing patterns
+- Compliance requirements
+- Code style guidelines
+
+### 3. Validate Implementation
 
 ```bash
-sc git-smart branch --branch REQ-001
-# Creates: feature/req-001-description
+# Run tests
+npm test
+
+# Validate requirement
+sc requirement validate REQ-001
+
+# Check compliance
+sc validate
 ```
 
-### 3. Code with Traceability
-
-Commits reference requirements:
+### 4. Complete and Merge
 
 ```bash
-git commit -m "REQ-001: Implement user authentication"
+# Mark complete
+sc requirement update REQ-001 --status=done
+
+# Merge with validation
+sc git-smart merge --push --delete-local
 ```
 
-### 4. Use AI Agents Safely
+## Code Quality
 
-Cursor rules ensure AI agents:
-- Don't make unauthorized changes
-- Follow coding standards
-- Maintain traceability
-- Test before committing
+### Pre-commit Checks
 
-### 5. Pre-Commit Validation
+Git hooks automatically run:
 
-Git hooks automatically check:
-- Linting and formatting
+- Linting
+- Formatting
 - Type checking
-- WIP registry compliance
+- Basic validation
+
+### Pre-push Checks
+
+More comprehensive validation:
+
+- Full test suite
+- Compliance validation
 - Requirement traceability
 
-## Best Practices
+## Documentation
 
-### DRY (Don't Repeat Yourself)
+Keep documentation close to code:
+
+- README files in feature directories
+- Inline code comments
+- Requirement references in commit messages
+
+## BUILDME.sh Standard
+
+Use the standardized `BUILDME.sh` interface:
+
 ```bash
-# Reuse existing abstractions
-# Avoid duplicating logic
-# Use shared utilities
+# Basic usage
+./BUILDME.sh              # Default build
+./BUILDME.sh --help       # Show help and options
+./BUILDME.sh --quiet      # Silent mode for automation
+./BUILDME.sh --validate   # Build + validation
+./BUILDME.sh --clean      # Clean build
+./BUILDME.sh --production # Production build
 ```
 
-### No Hacks or Stubs
-```bash
-# Fix root causes
-# Don't work around problems
-# No temporary solutions that become permanent
-```
+### Agent Usage Guidelines
 
-### Test First
-```bash
-# Write tests before implementation
-# Use Gherkin scenarios as test cases
-# Validate continuously
-```
+**Agents should prefer `BUILDME.sh` over direct commands** like `npm run build` because:
 
-
+- Consistent interface across all projects
+- Intelligent error handling and reporting
+- Environment detection and optimization
+- Validation integration
+- Standardized output for parsing

@@ -3,8 +3,6 @@ title: Planning
 description: Plan work with epics, requirements, and milestones
 ---
 
-# Planning with Supernal Coding
-
 Organize your work using the requirement-driven workflow.
 
 ## Hierarchy
@@ -63,4 +61,56 @@ Feature: User Authentication
 4. **Test** - Automated validation
 5. **Merge** - `sc git-smart merge --push`
 
+## Priority Levels
 
+| Priority | Use For |
+|----------|---------|
+| `critical` | Security issues, data loss |
+| `high` | Core functionality |
+| `medium` | Important features |
+| `low` | Nice-to-haves |
+
+## Epic Management
+
+Epics group related requirements:
+
+```bash
+# List epics
+sc epic list
+
+# View epic details
+sc epic show authentication
+
+# Create epic
+sc epic new "User Management" --description "All user-related features"
+```
+
+## Milestone Planning
+
+Milestones collect epics for releases:
+
+```bash
+# Create milestone
+sc milestone new "v1.0" --target-date 2024-03-01
+
+# Add epic to milestone
+sc epic update authentication --milestone v1.0
+
+# View milestone progress
+sc milestone show v1.0
+```
+
+## Kanban Tasks
+
+Break requirements into tasks:
+
+```bash
+# Create task
+sc kanban todo "Implement login form" --requirement REQ-001
+
+# List tasks
+sc kanban list
+
+# Move task to in-progress
+sc kanban move TASK-001 in-progress
+```

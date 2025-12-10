@@ -3,29 +3,46 @@ title: Guides
 description: Step-by-step guides for using Supernal Coding
 ---
 
-# Guides
-
-Learn how to use Supernal Coding effectively with these comprehensive guides.
+Comprehensive guides for getting the most out of Supernal Coding.
 
 ## Getting Started
 
-- [Installation](/guides/installation)
-- [Quick Start](/guides/quick-start)
-- [Basic Concepts](/guides/concepts)
+- **[What You Get](./what-you-get.md)** - Everything installed by `sc init`
+- **[Configuring](./configuring.md)** - Configure `supernal.yaml` and settings
 
-## Core Features
+## Development Workflow
 
-- [Requirement Management](/guides/requirements)
-- [Git Workflow](/guides/git-workflow)
-- [Testing](/guides/testing)
-- [Compliance](/guides/compliance)
+- **[Planning](./planning.md)** - Epics, requirements, and milestones
+- **[Building](./building.md)** - Implementation workflow with AI
+- **[Testing](./testing.md)** - Test generation and validation
 
-## Advanced Topics
+## Standards & Reference
 
-- [Custom Workflows](/guides/custom-workflows)
-- [CI/CD Integration](/guides/cicd)
-- [Multi-Agent Development](/guides/multi-agent)
+- **[Build & Test Standards](./build-test-standards.md)** - BUILDME.sh, TESTME.sh, RUNME.sh
+- **[Troubleshooting](./troubleshooting.md)** - Common issues and solutions
 
----
+## Quick Reference
 
-**New to Supernal Coding?** Start with the [Quick Start Guide](/guides/quick-start).
+### Daily Commands
+
+```bash
+# Start work on requirement
+sc git-smart branch --branch REQ-001
+sc req update REQ-001 --status=in-progress
+
+# Validate your work
+sc validate
+npm test
+
+# Complete and merge
+sc req update REQ-001 --status=done
+sc git-smart merge --push --delete-local
+```
+
+### Standardized Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `./BUILDME.sh` | Build the project |
+| `./TESTME.sh` | Run tests |
+| `./RUNME.sh` | Start dev server |
