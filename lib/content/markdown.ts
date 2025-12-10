@@ -331,49 +331,9 @@ export async function markdownToHtml(
       .use(rehypeRaw)
       .use(rehypeSlug) // Add IDs to headings that don't have them
       .use(rehypeCleanIds) // Clean up IDs to remove user-content- prefixes
-      .use(rehypeSanitize, {
-        ...defaultSchema,
-        tagNames: [...(defaultSchema.tagNames || []), 'script', 'iframe'],
-        attributes: {
-          ...defaultSchema.attributes,
-          div: [
-            ...(defaultSchema.attributes?.div || []),
-            'className',
-            'data-type',
-            'data-warning-type',
-            'data-mermaid',
-            'id',
-          ],
-          blockquote: [
-            ...(defaultSchema.attributes?.blockquote || []),
-            'class',
-            'data-type',
-          ],
-          code: [...(defaultSchema.attributes?.code || []), ['className']],
-          span: [...(defaultSchema.attributes?.span || []), ['className']],
-          'h1,h2,h3,h4,h5,h6': [
-            ...(defaultSchema.attributes?.['h1,h2,h3,h4,h5,h6'] || []),
-            'id',
-          ],
-          a: [
-            ...(defaultSchema.attributes?.a || []),
-            'id',
-            'href',
-            'target',
-            'rel',
-          ],
-          script: ['src', 'type', 'charset', 'async', 'defer'],
-          iframe: [
-            'src',
-            'width',
-            'height',
-            'style',
-            'frameborder',
-            'allowfullscreen',
-            'allow',
-          ],
-        },
-      })
+      // Note: Sanitization disabled to allow data-mermaid attributes
+      // TODO: Re-enable with proper data-* attribute handling
+      // .use(rehypeSanitize, {...})
       .use(rehypeStringify);
 
     const result = await processor.process(content);
