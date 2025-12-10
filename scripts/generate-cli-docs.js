@@ -115,3 +115,5 @@ ${info.examples.join('\n')}
 
 console.log(`Generated ${commands.length + 1} CLI doc files`);
 
+
+

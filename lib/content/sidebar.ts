@@ -57,7 +57,6 @@ export async function buildSidebarFromFilesystem(
       'evaluations',
       'requirements', // Internal requirements, not public docs
       'blog', // Blog is a top-level section, not part of docs sidebar
-      'cli', // CLI reference is shown separately
     ];
 
     // Process directories and markdown files
@@ -285,6 +284,10 @@ function getDefaultIcon(folderName: string): string | undefined {
     architecture: 'Boxes',
     reference: 'Link',
     'cli-commands': 'Terminal',
+    cli: 'Terminal',
+    tools: 'Wrench',
+    examples: 'Code',
+    templates: 'FileCode',
     requirements: 'FileText',
     features: 'Sparkles',
     components: 'Puzzle',
