@@ -341,6 +341,7 @@ export async function markdownToHtml(
             'className',
             'data-type',
             'data-warning-type',
+            'data-mermaid',
             'id',
           ],
           blockquote: [
