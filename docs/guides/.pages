@@ -1,0 +1,8 @@
+title: Guides
+nav:
+  - index.md
+  - configuring.md
+  - planning.md
+  - building.md
+  - testing.md
+

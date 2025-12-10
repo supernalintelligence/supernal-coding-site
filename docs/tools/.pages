@@ -1,0 +1,7 @@
+title: Tools
+nav:
+  - index.md
+  - cli.md
+  - git-hooks.md
+  - dashboard.md
+

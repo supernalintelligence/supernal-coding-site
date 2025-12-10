@@ -1,82 +1,53 @@
 ---
 title: Documentation
-description: Learn how to use Supernal Coding to build better software faster
+description: Learn how to use Supernal Coding to build compliant software
 ---
 
-# Supernal Coding Documentation
+# Welcome to Supernal Coding
 
-Welcome to Supernal Coding - an AI-accelerated development workflow system that helps teams build better software faster.
+AI-Accelerated Development Workflow System
 
-## Quick Links
+Transform any codebase into a compliant, behavior and requirement-driven system that *works natively with your AI agents*.
 
-- [Getting Started](/docs/guides/getting-started)
-- [Requirements System](/docs/guides/requirements)
-- [Git Workflow](/docs/guides/git-workflow)
-- [Testing](/docs/guides/testing)
+## Quick Start
 
-## What is Supernal Coding?
+```bash
+npm install -g @supernal/coding
+sc init --standard
+sc health
+```
 
-Supernal Coding provides the structure, validation, and automation that turns AI assistance into AI acceleration. Instead of just generating code, AI agents understand your:
+## Documentation
 
-- **Requirements** (Gherkin-based specs)
-- **Workflow** (Git hooks, pre-staging, validation)
-- **Tests** (Auto-generated from requirements)
-- **Compliance** (GDPR, SOC2, ISO13485, FDA)
+- **[Introduction](./introduction.md)** - What is Supernal Coding and why use it
+- **[Getting Started](./getting-started.md)** - Install and configure in minutes
+- **[Guides](./guides/)** - Deep dive into features
+- **[Examples](./examples/)** - Templates and code examples
+- **[Tools](./tools/)** - CLI, Git hooks, Dashboard
+- **[Workflow](./workflow/)** - SOPs and processes
+- **[Compliance](./compliance/)** - Regulatory frameworks
+
+## What It Does
+
+Supernal Coding equips your repository with:
+
+- **Requirement Traceability** - Every change links to a requirement
+- **AI Agent Safety** - Rules and validation prevent mistakes
+- **Compliance Automation** - HIPAA, SOC2, ISO 13485, FDA, GDPR
+- **Quality Gates** - Pre-commit and pre-push validation
+- **Workflow Structure** - Consistent development process
 
 ## Key Features
 
-### 📋 Requirement Management
-
-Write requirements in Gherkin format that both humans and AI can understand. Automatic validation ensures requirements are complete and testable.
-
-### 🔄 Workflow Automation
-
-Git hooks and pre-staging keep your codebase clean. AI commits are validated before they reach your repo.
-
-### 🧪 Test-First Development
-
-Generate tests from requirements. AI writes code that passes your specs, not the other way around.
-
-### ✅ Compliance Tracking
-
-Built-in support for GDPR, SOC2, ISO13485, and FDA 21 CFR Part 11. Audit-ready documentation generated automatically.
-
-### 📊 Real-Time Dashboard
-
-Monitor workflow status, requirement progress, and team activity in real-time.
-
-## Getting Started
-
-1. **Install Supernal Coding**
-
-   ```bash
-   npm install -g supernal-code-package
-   ```
-
-2. **Initialize Your Project**
-
-   ```bash
-   sc init
-   ```
-
-3. **Create Your First Requirement**
-
-   ```bash
-   sc req new "User authentication" --epic=auth
-   ```
-
-4. **Let AI Build It**
-   - AI reads the requirement
-   - Generates tests
-   - Implements the feature
-   - Validates everything
+| Feature | Description |
+|---------|-------------|
+| Requirements | Gherkin-based testable specifications |
+| Validation | Automated checks on every commit |
+| Compliance | Built-in regulatory framework support |
+| Dashboard | Visual tracking and monitoring |
+| AI-Native | Works with Cursor, Copilot, and other AI tools |
 
 ## Learn More
 
-- [Browse Guides](/guides)
-- [Read the Blog](/blog)
-- [View GitHub](https://github.com/supernalintelligence/supernal-coding)
-
----
-
-**Ready to accelerate your development?** Start with the [Getting Started Guide](/docs/guides/getting-started).
+- [Browse the Blog](/blog) - Latest updates and insights
+- [View on GitHub](https://github.com/supernalintelligence/supernal-coding)
