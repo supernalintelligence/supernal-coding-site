@@ -1,99 +1,136 @@
 ---
 title: What is Supernal Coding?
-description: A meta-repository system combining BDD, TDD, documentation-driven, and AI-driven development
+description: Understanding the Supernal Coding meta-repository system for AI-maintained compliant development
+sidebar_position: 1
 ---
 
 # What is Supernal Coding?
 
-Supernal Coding is a **meta-repository system** that equips any codebase with structured workflows, automated quality gates, and compliance infrastructure—designed for teams using AI agents in development.
+Supernal Coding is a **meta-repository system** that transforms any codebase into an AI-maintained, compliant, and self-validating development environment. It provides the tools, systems, and visualizations needed to create and verify compliant software systems, particularly for regulated industries.
 
-## The Problem
+## Core Purpose
 
-Modern development teams face compounding challenges:
+Supernal Coding solves the fundamental problem of **building coding systems with AI and people in manners that are compliant**. It serves as a "meta" repository that can be used by all other repositories to create or augment code bases to achieve measured compliance.
 
-- **AI agents need structure** — Without clear conventions, AI tools produce inconsistent, hard-to-maintain code
-- **Compliance is expensive** — Meeting SOC2, HIPAA, ISO 13485, or FDA requirements manually consumes significant engineering time
-- **Traceability is hard** — Connecting requirements to code to tests to evidence requires discipline that's easy to lose
-- **Quality degrades over time** — Without enforcement, technical debt accumulates and documentation drifts from reality
+## Key Capabilities
 
-## Four Development Approaches, One System
+### Repository Transformation
 
-Supernal Coding integrates four proven development methodologies into a cohesive workflow:
+- **Repo Equipment**: Any repository can be equipped with Supernal Coding tools via `sc init`
+- **Template System**: Automated generation of compliant project structures
+- **Configuration Management**: Unified configuration across all project aspects
 
-### 1. Behavior-Driven Development (BDD)
+### Requirements Management
 
-Requirements are expressed as Gherkin scenarios that both humans and machines can read. Every feature starts with a clear specification of expected behavior.
+- **Requirement Tracking**: Full lifecycle management from creation to validation
+- **Traceability**: Complete linkage between requirements, code, tests, and compliance
+- **Phase-Based Organization**: Requirements organized by development phases (discovery, foundation, implementation, validation, compliance)
 
-```gherkin
-Feature: User Authentication
-  Scenario: Successful login with valid credentials
-    Given a registered user exists
-    When they submit valid credentials
-    Then they receive an authentication token
-```
+### Intelligent Workflows
 
-### 2. Test-Driven Development (TDD)
+- **Git Integration**: Smart git workflows with automated validation and hooks
+- **Agent Coordination**: Seamless handoffs between AI agents and human developers
+- **State Management**: Persistent tracking of project state and progress
 
-Tests are created *before* implementation. The `sc requirement` workflow generates test scaffolds from Gherkin specs, establishing clear acceptance criteria before a single line of code is written.
+### Compliance & Validation
 
-### 3. Documentation-Driven Development
+- **Compliance Frameworks**: Built-in support for ISO 13485, FDA 21 CFR Part 11, GDPR, SOC2, ISO 27001
+- **Automated Testing**: Self-validating test systems with comprehensive coverage
+- **Audit Trails**: Complete documentation of all changes and decisions
 
-Requirements, architecture decisions, and compliance evidence live alongside code—not in external wikis that drift out of sync. Changes to requirements trigger updates to tests. Changes to code trigger documentation reviews.
+### Modern Dashboard
 
-### 4. AI-Driven Analysis
+- **Real-time Visualization**: Live project status and progress tracking
+- **Interactive Components**: Clickable requirement cards with detailed views
+- **Compliance Monitoring**: Visual compliance status and gap analysis
 
-Every artifact—requirements, tests, code, and documentation—is structured for AI comprehension. Cursor rules guide AI behavior. Automated validation catches inconsistencies. Health checks analyze coverage and traceability.
+## AI Agent Integration
 
-## What You Get
+### Supernal Coding Provides Tools for Agents
 
-When you run `sc init`, your repository gains:
+Supernal Coding equips external AI agents with powerful capabilities through the `sc` CLI and MCP interface:
 
-| Component | Purpose |
-|-----------|---------|
-| **SC CLI** | Commands for requirements, validation, health checks, and workflow management |
-| **Cursor Rules** | Guidelines that shape how AI agents interact with your codebase |
-| **Git Hooks** | Pre-commit and pre-push validation that prevents bad code from entering |
-| **SOPs** | Standard operating procedures for a 12-phase development lifecycle |
-| **Compliance Templates** | Pre-built frameworks for SOC2, ISO 13485, FDA 21 CFR Part 11, HIPAA, and GDPR |
+- **sc CLI & MCP**: Command interface and Model Context Protocol for agent integration
+- **Structured Context**: Requirements, tests, and documentation that agents can understand
+- **Guided Workflows**: Clear processes that agents can execute step-by-step
+- **Validation Framework**: Testing and compliance checks that guide agent decisions
+- **Progress Tracking**: Real-time feedback on agent activities via dashboard
 
-## How It Works
+### Integration Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                     Development Workflow                        │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  Requirement → Gherkin → Tests → Code → Validation → Evidence  │
-│       ↑          ↑         ↑       ↑         ↑           ↑     │
-│       └──────────┴─────────┴───────┴─────────┴───────────┘     │
-│                    AI-assisted at every stage                   │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
+**Flow**: `sc CLI` → `AI Agent` → `Code/Tests/Docs`
 
-1. **Create a requirement** — `sc req new "Feature" --epic=main`
-2. **AI generates Gherkin** — Behavior specifications from natural language
-3. **Generate test scaffolds** — `sc req generate-tests REQ-001`
-4. **Implement with AI pair** — Cursor rules guide consistent implementation
-5. **Validate before merge** — Git hooks enforce quality gates
-6. **Evidence is automatic** — Traceability captured at every step
+- **AI Agent Uses sc**: External agents (like Cursor AI) use Supernal Coding's tools
+- **sc Provides Structure**: Requirements management, testing frameworks, compliance validation
+- **Agent Creates Output**: Code, tests, and documentation following Supernal Coding guidelines
+- **sc Validates Results**: Automated validation and compliance checking
 
-## Who It's For
+## Development Phases
 
-**Regulated industries** — Healthcare, fintech, medtech, aerospace, and defense teams where compliance isn't optional
+Supernal Coding organizes development into five key phases:
 
-**AI-forward teams** — Organizations using Cursor, Copilot, or other AI tools who need guardrails and consistency
+### 1. Discovery Phase
 
-**Quality-focused engineering** — Teams that value traceability, documentation, and reproducible processes
+- Problem identification and analysis
+- Stakeholder requirements gathering
+- Initial architecture planning
+- Compliance framework selection
 
-## What It's Not
+### 2. Foundation Phase
 
-- **Not a replacement for judgment** — AI assists; humans decide
-- **Not magic compliance** — You still need to do the work; this provides the structure
-- **Not vendor lock-in** — Standard markdown, Git, and open formats throughout
+- Repository setup and configuration
+- Core infrastructure implementation
+- Testing framework establishment
+- CI/CD pipeline configuration
+
+### 3. Implementation Phase
+
+- Feature development and coding
+- Requirement implementation
+- Iterative testing and validation
+- Code review and quality assurance
+
+### 4. Validation Phase
+
+- Comprehensive testing execution
+- Performance and security validation
+- Integration testing
+- User acceptance testing
+
+### 5. Compliance Phase
+
+- Compliance framework validation
+- Audit trail generation
+- Documentation finalization
+- Regulatory submission preparation
+
+## Who Should Use Supernal Coding?
+
+### Regulated Industries
+
+- Medical device software (ISO 13485)
+- Financial services (SOC2, PCI DSS)
+- Healthcare (HIPAA, FDA)
+- Government contractors (FedRAMP)
+
+### AI-First Development Teams
+
+- Teams using AI agents for development
+- Organizations requiring audit trails
+- Projects needing requirement traceability
+- Teams wanting automated compliance
+
+### Quality-Focused Organizations
+
+- Companies requiring comprehensive testing
+- Teams needing documentation automation
+- Organizations with complex approval workflows
+- Projects requiring multi-agent coordination
 
 ## Next Steps
 
-- [Getting Started](./getting-started.md) — Install and configure in 5 minutes
-- [Guides](./guides/) — Deep dives into configuration, planning, building, and testing
-- [Workflow](./workflow/) — The 12-phase development process and SOPs
+- [Getting Started](/docs/getting-started) - Quick setup guide
+- [Guides](/docs/guides) - How-to guides for common tasks
+- [Tools](/docs/tools) - CLI and tooling reference
+- [Workflow](/docs/workflow) - Standard operating procedures
+- [Compliance](/docs/compliance) - Framework implementation

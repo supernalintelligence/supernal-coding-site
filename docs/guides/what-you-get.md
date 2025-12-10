@@ -192,3 +192,4 @@ sc git-smart merge --push --delete-local
 | `./TESTME.sh` | - | Run all tests |
 | `./BUILDME.sh` | - | Build project |
 
+

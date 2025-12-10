@@ -1,16 +1,19 @@
 ---
-title: Welcome to Supernal Coding
+title: Documentation
 description: AI-Accelerated Development Workflow System
+sidebar_position: 0
 ---
+
+# Supernal Coding Documentation
 
 Transform any codebase into a compliant, behavior and requirement-driven system that *works natively with your AI agents*.
 
 ## Quick Start
 
 ```bash
-npm install -g @supernal/coding
+npm install -g supernal-coding
 sc init --standard
-sc health
+sc doctor
 ```
 
 ## Documentation

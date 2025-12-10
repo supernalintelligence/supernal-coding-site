@@ -1,25 +1,34 @@
 ---
 title: Guides
 description: Step-by-step guides for using Supernal Coding
+sidebar_position: 1
 ---
+
+# Guides
 
 Comprehensive guides for getting the most out of Supernal Coding.
 
 ## Getting Started
 
-- **[What You Get](./what-you-get.md)** - Everything installed by `sc init`
-- **[Configuring](./configuring.md)** - Configure `supernal.yaml` and settings
+- **[What You Get](./what-you-get)** - Everything installed by `sc init`
+- **[Configuring](./configuring)** - Configure `supernal.yaml` and settings
 
 ## Development Workflow
 
-- **[Planning](./planning.md)** - Epics, requirements, and milestones
-- **[Building](./building.md)** - Implementation workflow with AI
-- **[Testing](./testing.md)** - Test generation and validation
+- **[Planning](./planning)** - Epics, requirements, and milestones
+- **[Building](./building)** - Implementation workflow with AI
+- **[Testing](./testing)** - Test generation and validation
 
 ## Standards & Reference
 
-- **[Build & Test Standards](./build-test-standards.md)** - BUILDME.sh, TESTME.sh, RUNME.sh
-- **[Troubleshooting](./troubleshooting.md)** - Common issues and solutions
+- **[Build & Test Standards](./build-test-standards)** - BUILDME.sh, TESTME.sh, RUNME.sh
+- **[Troubleshooting](./troubleshooting)** - Common issues and solutions
+
+## Workflow Details
+
+In-depth documentation for specific workflow aspects:
+
+- **[Workflow Details](./workflow-details/)** - Requirements, git integration, agent handoffs, and more
 
 ## Quick Reference
 
