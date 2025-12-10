@@ -20,9 +20,9 @@ import NodeCache from 'node-cache';
 import { collectFolderConfigs } from './pages-config';
 import { mergeFrontmatter } from './frontmatter-merge';
 
-// Create a server-side cache with a default TTL of 5 minutes (300 seconds) in development, 10 minutes in production
+// Create a server-side cache with a default TTL of 30 seconds in development, 10 minutes in production
 const contentCache = new NodeCache({
-  stdTTL: process.env.NODE_ENV === 'production' ? 600 : 300, // 10 min prod, 5 min dev
+  stdTTL: process.env.NODE_ENV === 'production' ? 600 : 30, // 10 min prod, 30 sec dev
 });
 
 // Cache key prefixes

@@ -1,11 +1,7 @@
 ---
-title: Documentation
-description: Learn how to use Supernal Coding to build compliant software
+title: Welcome to Supernal Coding
+description: AI-Accelerated Development Workflow System
 ---
-
-# Welcome to Supernal Coding
-
-AI-Accelerated Development Workflow System
 
 Transform any codebase into a compliant, behavior and requirement-driven system that *works natively with your AI agents*.
 
