@@ -35,3 +35,4 @@ Visual interface for requirement and compliance tracking.
 | `sc health` | Check repository health |
 | `sc test` | Run tests |
 
+

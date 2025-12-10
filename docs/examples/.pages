@@ -1,5 +1,6 @@
 title: Examples
 nav:
   - index.md
-  - templates
-
+  - requirement-workflow
+  - compliance-setup
+  - git-hooks-config

@@ -39,3 +39,4 @@ Pre-commit hooks, automated testing, and validation prevent bad code from enteri
 - [Guides](./guides/) - Deep dive into specific features
 - [Workflow](./workflow/) - Understand the development process
 
+

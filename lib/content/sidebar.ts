@@ -56,6 +56,8 @@ export async function buildSidebarFromFilesystem(
       'business',
       'evaluations',
       'requirements', // Internal requirements, not public docs
+      'blog', // Blog is a top-level section, not part of docs sidebar
+      'cli', // CLI reference is shown separately
     ];
 
     // Process directories and markdown files
@@ -197,7 +199,9 @@ function sortSidebarItems(
         orderedItems.push(...remaining);
         break;
       } else {
-        const item = itemMap.get(navItem) || itemMap.get(`${navItem}.md`);
+        // Handle both 'file.md' and 'file' formats
+        const navItemWithoutExt = navItem.replace(/\.md$/, '');
+        const item = itemMap.get(navItem) || itemMap.get(navItemWithoutExt);
         if (item) {
           orderedItems.push(item);
           remainingItems.delete(item);

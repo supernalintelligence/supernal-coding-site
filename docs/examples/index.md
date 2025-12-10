@@ -1,37 +1,67 @@
 ---
 title: Examples
-description: Code examples and project templates
+description: Working examples demonstrating Supernal Coding features
+icon: Code
 ---
 
 # Examples
 
-Real-world examples and templates to accelerate your development.
+Practical examples showing how to use Supernal Coding in real projects.
 
-## Templates
+## Available Examples
 
-Ready-to-use project templates:
+### [Requirement Workflow](./requirement-workflow/)
+Complete example of creating, implementing, and completing a requirement from start to finish.
 
-- [Requirement Template](./templates/requirement.md)
-- [Epic Template](./templates/epic.md)
-- [Feature Template](./templates/feature.md)
+### [Compliance Setup](./compliance-setup/)
+Setting up compliance frameworks for a healthcare application.
 
-## Example Projects
+### [Git Hooks Configuration](./git-hooks-config/)
+Configuring pre-commit and pre-push hooks for quality gates.
 
-### Compliant Web App
-A Next.js application with full compliance tracking.
+## Quick Code Snippets
 
-### CLI Tool
-A Node.js CLI with requirement traceability.
-
-### API Service
-A REST API with automated testing and evidence collection.
-
-## Quick Start Templates
+### Initialize Repository
 
 ```bash
-# Initialize with a specific template
-sc init --template web-app
-sc init --template cli-tool
-sc init --template api-service
+# Standard initialization with compliance frameworks
+sc init --standard --compliance-frameworks hipaa,soc2
+
+# Verify installation
+sc health
 ```
 
+### Create Requirement
+
+```bash
+# Create feature requirement
+sc requirement new "User Authentication" \
+  --epic=security \
+  --priority=high \
+  --request-type=feature
+
+# Validate it
+sc requirement validate REQ-001
+```
+
+### Feature Branch Workflow
+
+```bash
+# Start work on requirement
+sc git-smart branch --branch REQ-001
+
+# ... implement feature ...
+
+# Merge when complete
+sc git-smart merge --push --delete-local
+```
+
+## Project Templates
+
+Templates are installed via `sc init`:
+
+| Template | Description |
+|----------|-------------|
+| `--standard` | Full setup with docs, compliance, hooks |
+| `--minimal` | Essential files only |
+| `--full` | Everything including all compliance frameworks |
