@@ -1,0 +1,18 @@
+title: Workflow Details
+nav:
+  - requirements.md
+  - task-lifecycle.md
+  - epic-development.md
+  - git-integration.md
+  - git-smart-merge.md
+  - agent-handoffs.md
+  - ai-prompting.md
+  - approval-workflow.md
+  - diagrams.md
+  - state-diagrams.md
+  - ci-cd.md
+  - release-management.md
+  - complete-workflow-example.md
+  - comprehensive-workflow-system.md
+  - architecture.md
+
