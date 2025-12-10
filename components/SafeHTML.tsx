@@ -5,8 +5,18 @@ import { useEffect, useRef } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import Warning from './Warning';
 
-// Dynamically import MermaidDiagram with SSR disabled
+// Dynamically import MermaidDiagram with SSR disabled (basic diagrams)
 const MermaidDiagram = dynamic(() => import('./MermaidDiagram'), {
+  ssr: false,
+  loading: () => (
+    <div className="my-4 p-4 bg-gray-100 dark:bg-gray-800 rounded text-center">
+      Loading diagram...
+    </div>
+  )
+});
+
+// Dynamically import SimpleMermaid with SSR disabled (zoom/pan/save features)
+const SimpleMermaid = dynamic(() => import('./SimpleMermaid'), {
   ssr: false,
   loading: () => (
     <div className="my-4 p-4 bg-gray-100 dark:bg-gray-800 rounded text-center">
@@ -25,6 +35,9 @@ export default function SafeHTML({ html, className = '' }: SafeHTMLProps) {
   const mermaidRootsRef = useRef<
     Array<{ root: ReactDOM.Root; container: HTMLElement }>
   >([]);
+  const simpleMermaidRootsRef = useRef<
+    Array<{ root: ReactDOM.Root; container: HTMLElement }>
+  >([]);
   const warningRootsRef = useRef<
     Array<{ root: ReactDOM.Root; container: HTMLElement }>
   >([]);
@@ -41,6 +54,13 @@ export default function SafeHTML({ html, className = '' }: SafeHTMLProps) {
         console.warn('Error unmounting Mermaid root:', e);
       }
     });
+    simpleMermaidRootsRef.current.forEach(({ root }) => {
+      try {
+        root.unmount();
+      } catch (e) {
+        console.warn('Error unmounting SimpleMermaid root:', e);
+      }
+    });
     warningRootsRef.current.forEach(({ root }) => {
       try {
         root.unmount();
@@ -49,12 +69,41 @@ export default function SafeHTML({ html, className = '' }: SafeHTMLProps) {
       }
     });
     mermaidRootsRef.current = [];
+    simpleMermaidRootsRef.current = [];
     warningRootsRef.current = [];
 
     // Set the HTML content
     container.innerHTML = html;
 
-    // Handle Mermaid diagrams
+    // Handle SimpleMermaid diagrams (with zoom/pan/save features)
+    const simpleMermaidElements = container.querySelectorAll('[data-simple-mermaid]');
+    simpleMermaidElements.forEach((element) => {
+      const chart = decodeURIComponent(
+        element.getAttribute('data-simple-mermaid') || ''
+      );
+      const title = decodeURIComponent(
+        element.getAttribute('data-mermaid-title') || ''
+      );
+      const description = decodeURIComponent(
+        element.getAttribute('data-mermaid-description') || ''
+      );
+      if (!chart) return;
+
+      const simpleMermaidContainer = document.createElement('div');
+      element.replaceWith(simpleMermaidContainer);
+
+      const root = ReactDOM.createRoot(simpleMermaidContainer);
+      root.render(
+        <SimpleMermaid 
+          chart={chart} 
+          title={title || undefined} 
+          description={description || undefined} 
+        />
+      );
+      simpleMermaidRootsRef.current.push({ root, container: simpleMermaidContainer });
+    });
+
+    // Handle basic Mermaid diagrams (```mermaid code blocks)
     const mermaidElements = container.querySelectorAll('[data-mermaid]');
     mermaidElements.forEach((element) => {
       const chart = decodeURIComponent(
@@ -151,6 +200,13 @@ export default function SafeHTML({ html, className = '' }: SafeHTMLProps) {
           root.unmount();
         } catch (e) {
           console.warn('Error unmounting Mermaid root during cleanup:', e);
+        }
+      });
+      simpleMermaidRootsRef.current.forEach(({ root }) => {
+        try {
+          root.unmount();
+        } catch (e) {
+          console.warn('Error unmounting SimpleMermaid root during cleanup:', e);
         }
       });
       warningRootsRef.current.forEach(({ root }) => {

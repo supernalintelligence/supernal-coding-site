@@ -218,7 +218,7 @@ export function parseFrontmatter(content: string): {
   }
 }
 
-// Custom plugin to process Mermaid diagrams
+// Custom plugin to process Mermaid diagrams (```mermaid code blocks)
 const remarkProcessMermaid = () => {
   return (tree: Node) => {
     visit(tree, 'code', (node: any) => {
@@ -230,6 +230,38 @@ const remarkProcessMermaid = () => {
     });
   };
 };
+
+// Pre-process function to convert <SimpleMermaid> JSX tags in raw markdown
+// This runs BEFORE the unified pipeline to convert JSX to HTML divs with data attributes
+function preprocessSimpleMermaid(content: string): string {
+  // Match <SimpleMermaid ... `} /> tags
+  // The key is matching the closing backtick-brace-space-slash-greater pattern
+  // This avoids matching <br/> inside the chart content
+  const simpleMermaidRegex = /<SimpleMermaid\s+([\s\S]*?)`\}\s*\/>/g;
+  
+  return content.replace(simpleMermaidRegex, (fullMatch, attributes) => {
+    // The attributes include everything up to the closing backtick
+    // So we need to add `} back to properly match the chart content
+    const fullAttributes = attributes + '`}';
+    
+    // Extract chart content from chart={`...`}
+    const chartMatch = fullAttributes.match(/chart=\{`([\s\S]*)`\}/);
+    const titleMatch = fullAttributes.match(/title="([^"]*)"/);
+    const descriptionMatch = fullAttributes.match(/description="([^"]*)"/);
+    
+    if (chartMatch) {
+      const chart = chartMatch[1] || '';
+      const title = titleMatch ? titleMatch[1] : '';
+      const description = descriptionMatch ? descriptionMatch[1] : '';
+      
+      // Create a div with data attributes for SimpleMermaid
+      // This will be processed by SafeHTML on the client side
+      return `<div data-simple-mermaid="${encodeURIComponent(chart)}" data-mermaid-title="${encodeURIComponent(title)}" data-mermaid-description="${encodeURIComponent(description)}"></div>`;
+    }
+    
+    return fullMatch; // Return unchanged if no chart found
+  });
+}
 
 // Custom plugin to process heading IDs
 const remarkProcessHeadingIds = () => {
@@ -314,11 +346,14 @@ export async function markdownToHtml(
     // Get root dir (browser-safe)
     const rootDir = typeof window === 'undefined' ? process.cwd() : '';
 
+    // Pre-process SimpleMermaid JSX tags before markdown parsing
+    const preprocessedContent = preprocessSimpleMermaid(content);
+
     // Process custom ID syntax in markdown headers: ## Header {#custom-id}
     const processor = unified()
       .use(remarkParse)
       .use(remarkGfm)
-      .use(remarkProcessMermaid) // Process Mermaid diagrams
+      .use(remarkProcessMermaid) // Process ```mermaid code blocks
       .use(remarkProcessHeadingIds) // Process custom heading IDs
       // Add remarkMdLinks to convert markdown links from .md to .html
       .use(remarkMdLinks, {
@@ -336,7 +371,7 @@ export async function markdownToHtml(
       // .use(rehypeSanitize, {...})
       .use(rehypeStringify);
 
-    const result = await processor.process(content);
+    const result = await processor.process(preprocessedContent);
 
     let html = result.toString();
 
