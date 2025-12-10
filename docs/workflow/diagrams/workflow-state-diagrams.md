@@ -1,6 +1,9 @@
-# Workflow State Diagrams
+---
+title: Workflow State Diagrams
+description: Visual representations of Supernal Coding workflows using Mermaid diagrams
+---
 
-This document contains Mermaid state diagrams that visualize the workflow processes for the Supernal Coding system.
+Mermaid state diagrams that visualize the workflow processes for the Supernal Coding system.
 
 ## 🔄 Automatic Requirement Git Integration Flow (REQ-045)
 
