@@ -14,35 +14,46 @@ export default function DocsContent({ post }: DocsContentProps) {
   const processedHtml = useMemo(() => {
     if (!post.html) return '';
 
+    let html = post.html;
+
+    // Remove leading whitespace/newlines
+    html = html.replace(/^\s+/, '');
+
     // Remove the first h1 if it matches the title (to avoid duplication)
-    const h1Match = post.html.match(/^<h1[^>]*>(.*?)<\/h1>/i);
+    // Match h1 anywhere near the start (may have whitespace or wrapper divs)
+    const h1Match = html.match(/<h1[^>]*>(.*?)<\/h1>/i);
     if (h1Match) {
       const h1Text = h1Match[1].replace(/<[^>]*>/g, '').trim();
       const titleText = post.metadata.title.trim();
 
-      // If the h1 text matches the title, remove it
+      // If the h1 text matches the title (case insensitive), remove it
       if (h1Text.toLowerCase() === titleText.toLowerCase()) {
-        return post.html.replace(/^<h1[^>]*>.*?<\/h1>\s*/i, '');
+        html = html.replace(/<h1[^>]*>.*?<\/h1>\s*/i, '');
       }
     }
-    return post.html;
+
+    // Clean up any leading empty paragraphs or whitespace
+    html = html.replace(/^(\s*<p>\s*<\/p>\s*)+/, '');
+    html = html.replace(/^\s+/, '');
+
+    return html;
   }, [post.html, post.metadata.title]);
 
   return (
     <article className="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden">
-      <div className="p-8">
-        {/* Header */}
-        <header className="mb-8 pb-6 border-b border-gray-200 dark:border-gray-700">
-          <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+      <div className="p-6 md:p-8">
+        {/* Header - only show if we have metadata */}
+        <header className="mb-6">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
             {post.metadata.title}
           </h1>
           {post.metadata.description && (
-            <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">
+            <p className="mt-2 text-lg text-gray-600 dark:text-gray-400">
               {post.metadata.description}
             </p>
           )}
           {post.metadata.author && (
-            <div className="text-sm text-gray-500 dark:text-gray-400">
+            <div className="mt-3 text-sm text-gray-500 dark:text-gray-400">
               {typeof post.metadata.author === 'string'
                 ? post.metadata.author
                 : post.metadata.author.name}
@@ -52,7 +63,7 @@ export default function DocsContent({ post }: DocsContentProps) {
         </header>
 
         {/* Content */}
-        <div className="prose prose-lg dark:prose-invert max-w-none">
+        <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:mt-6 prose-headings:mb-3 prose-p:my-3 prose-ul:my-3 prose-li:my-1">
           <SafeHTML html={processedHtml} />
         </div>
       </div>
